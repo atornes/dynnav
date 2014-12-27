@@ -1,6 +1,7 @@
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using DynNav;
 using DynNav.Models;
 
 namespace DynNav.Controllers
@@ -31,6 +32,9 @@ namespace DynNav.Controllers
             //Not found, 404
             if (route == null)
                 return HttpNotFound();
+
+            //var html = Snapshot.Get("http://localhost:5004/#/test");
+            //System.Console.WriteLine(html);
 
             //Return route
             return new ObjectResult(route);
