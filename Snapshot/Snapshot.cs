@@ -9,6 +9,8 @@ namespace DynNav
 {
     public class Snapshot
     {
+        //Read more here:
+        //http://stackoverflow.com/questions/18530258/how-to-make-a-spa-seo-crawlable/18530259#18530259
         public static string Get(string url)
         {
             string appRoot = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
