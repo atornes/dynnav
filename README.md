@@ -6,7 +6,7 @@ A proof of concept project.
 Part 1 - Routes
 -------
 Routes can be defined from a dynamic source such as a database. Each route can have some associated data such as view, controller, model, variables, etc.
-When the router catches a route change, an Ajax request is made to the server to collect route data for that path. Currently only a html view is supported, so this is then loaded into a container (also using Ajax).
+When the router catches a route change, an Ajax request is made to the server to collect route data for that path. Currently only a html view path is supported. This is then loaded into a container (also using Ajax).
 
 Part 2 - Snapshots
 -------
@@ -26,5 +26,5 @@ Next
 Next steps will most likely be in a new project as this project should just be a proof of concept.
 - Multiple views rendered in order.
 - Integrate with a front-end framework such as AngularJS or directly with ES6 components (via polymer maybe).
-- DB storage (MongoDB)
+- DB storage (MongoDB or similar)
 - Admin GUI
