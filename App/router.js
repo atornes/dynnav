@@ -8,7 +8,7 @@
 	}
 
 	function routeChange() {
-		var path = w.location.hash.slice(1) || '/';
+		var path = w.location.hash.slice(2) || '/';
 		xget(apiUrl + path, routeLoaded);
 	}
 
@@ -18,7 +18,7 @@
 			loadView(navItem.ViewPath);
 		}
 		else {
-			w.location.hash = "/404";
+			w.location.hash = "!/404";
 		}
 	}
 
@@ -32,7 +32,7 @@
 			viewBody.innerHTML = this.response;
 		}
 		else {
-			w.location.hash = "/404";
+			w.location.hash = "!/404";
 		}
 	}
 

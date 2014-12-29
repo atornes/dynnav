@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DynNav;
 using DynNav.Models;
+using dynnav.Controllers;
 
 namespace DynNav.Controllers
 {
@@ -10,31 +11,19 @@ namespace DynNav.Controllers
     [Route("api/[controller]")]
     public class RouteController : Controller
     {
-        static readonly List<Route> _routes = new List<Route>()
-        {
-            new Route { Path = "/", ViewPath = "/app/views/home.html", ControllerPath = "" },
-            new Route { Path = "/404", ViewPath = "/app/views/404.html", ControllerPath = "" },
-            new Route { Path = "/about", ViewPath = "/app/views/about.html", ControllerPath = "" },
-            new Route { Path = "/contact", ViewPath = "/app/views/contact.html", ControllerPath = "" },
-            new Route { Path = "/test", ViewPath = "/app/views/test.html", ControllerPath = "" },
-        };
-
         [HttpGet(Name = "GetRouteByPath")]
         public IActionResult GetRoute(string path)
         {
             //No path, return all
             if (string.IsNullOrEmpty(path))
-                return new ObjectResult(_routes);
+                return new ObjectResult(Routes.All);
 
             //Find route
-            var route = _routes.FirstOrDefault(x => x.Path == path);
+            var route = Routes.Get(path);
 
             //Not found, 404
             if (route == null)
                 return HttpNotFound();
-
-            //var html = Snapshot.Get("http://localhost:5004/#/test");
-            //System.Console.WriteLine(html);
 
             //Return route
             return new ObjectResult(route);
@@ -49,7 +38,7 @@ namespace DynNav.Controllers
             }
             else
             {
-                _routes.Add(route);
+                Routes.All.Add(route);
 
                 string url = Url.RouteUrl("GetRouteByPath", new { path = route.Path }, 
                     Request.Scheme, Request.Host.ToUriComponent());
@@ -62,13 +51,14 @@ namespace DynNav.Controllers
         [HttpDelete("{path}")]
         public IActionResult DeleteRoute(string path)
         {
-            var route = _routes.FirstOrDefault(x => x.Path == path);
+            var route = Routes.Get(path);
+
             if (route == null)
             {
                 return HttpNotFound();
             }
 
-            _routes.Remove(route);
+            Routes.All.Remove(route);
             
             return new HttpStatusCodeResult(204); // 201 No Content
         }
