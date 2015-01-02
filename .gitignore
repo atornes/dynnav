@@ -1,8 +1,6 @@
 *.dll
 *.jrs
-dynnav.sln.ide/edb.chk
-dynnav.sln.ide/edb.log
-dynnav.sln.ide/edbtmp.log
-dynnav.sln.ide/storage.ide
-dynnav.v14.suo
+*.suo
 *.user
+**/bin
+dynnav.sln.ide
